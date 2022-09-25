@@ -5,20 +5,20 @@ import random
 from config import main_token
 
 vk_session = vk_api.VkApi(token=main_token)
-longpoll = VkLongPoll(vk_session) #210820518
+longpoll = VkLongPoll(vk_session)
 
 def sender(id, text):
     vk_session.method('messages.send', {'chat_id': id, 'message': text, 'random_id': 0})
 
 def id_check(id):
-    id_for_scam = [390661592] #Сюда вставить айди пользователей
+    id_for_scam = [390661592] # Здесь айди пользователей
     return id in id_for_scam
 
-plug = ['Ротик офф', 'Заткнись', 'Захлопнись', 'Фак офф', 'Тебе здесь не рады нигер']
+plug = [] # Здесь вставляешь фразы котоые хочешь
 
 for event in longpoll.listen():
     if event.type == VkEventType.MESSAGE_NEW and id_check(event.user_id):
-        if event.from_chat:  #Айди Тимура: 197931992 Ромы: 380968538  Мое: 233070793 Ильи Н: 390661592
+        if event.from_chat:
             msg = event.text.lower()
             id = event.chat_id
 
@@ -27,10 +27,10 @@ for event in longpoll.listen():
                 sender(id, f'Хихи')
 
             #Для Тимура:
-            # if 'рорезу ебут' in msg:
-            #     sender(id, f'Согласен')
+            # if 'ривет' in msg:
+            #     sender(id, f'Привет!')
             # elif 'рорез' in msg:
-            #     sender(id, f'Твоя рореза сосет за углом')
+            #     sender(id, f'plug')
             # elif 'кс' in msg:
             #     sender(id, f'Тебе надо тренироваться')
             # else:
