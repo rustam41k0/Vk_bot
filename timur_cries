@@ -14,7 +14,7 @@ def id_check(id):
     id_for_scam = [390661592] # Здесь айди пользователей
     return id in id_for_scam
 
-plug = [] # Здесь вставляешь фразы котоые хочешь
+plug = [] # Здесь вставляешь фразы которые хочешь
 
 for event in longpoll.listen():
     if event.type == VkEventType.MESSAGE_NEW and id_check(event.user_id):
